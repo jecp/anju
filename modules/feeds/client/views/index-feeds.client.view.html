@@ -1,0 +1,26 @@
+<section>
+  <div class="page-header">
+    <h1>文章列表</h1>
+      <tabset>
+        <tab>
+          <tab-heading ng-repeat="feed in vm.feeds">
+            <span ng-bind="feed.title"></span>
+          </tab-heading>
+        </tab>
+      </tabset>
+
+  </div>
+  <div class="list-group">
+    <a ng-repeat="feed in vm.feeds" ui-sref="feeds.view({ feedId: feed._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="feed.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="feed.user" ng-bind="feed.user.displayName"></span>
+        <span ng-if="!feed.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="feed.title"></h4>
+      <p class="list-group-item-text" ng-bind="feed.content"></p>
+    </a>
+  </div>
+</section>
